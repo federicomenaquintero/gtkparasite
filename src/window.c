@@ -212,15 +212,15 @@ create_widget_tree(ParasiteWindow *parasite)
     GtkWidget *swin;
     GtkWidget *hpaned;
 
-    hpaned = gtk_hpaned_new();
+    hpaned = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
     gtk_widget_show(hpaned);
     gtk_container_set_border_width(GTK_CONTAINER(hpaned), 12);
 
-    vbox = gtk_vbox_new(FALSE, 6);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
     gtk_widget_show(vbox);
     gtk_paned_pack1(GTK_PANED(hpaned), vbox, FALSE, FALSE);
 
-    bbox = gtk_hbutton_box_new();
+    bbox = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);
     gtk_widget_show(bbox);
     gtk_box_pack_start(GTK_BOX(vbox), bbox, FALSE, FALSE, 0);
     gtk_button_box_set_layout(GTK_BUTTON_BOX(bbox), GTK_BUTTONBOX_START);
@@ -261,7 +261,7 @@ create_action_list(ParasiteWindow *parasite)
     GtkWidget *vbox;
     GtkWidget *swin;
 
-    vbox = gtk_vbox_new(FALSE, 6);
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
     gtk_widget_show(vbox);
     gtk_container_set_border_width(GTK_CONTAINER(vbox), 12);
 
@@ -303,7 +303,7 @@ gtkparasite_window_create()
     gtk_window_set_title(GTK_WINDOW(window->window), title);
     g_free(title);
 
-    vpaned = gtk_vpaned_new();
+    vpaned = gtk_paned_new(GTK_ORIENTATION_VERTICAL);
     gtk_widget_show(vpaned);
     gtk_container_add(GTK_CONTAINER(window->window), vpaned);
 

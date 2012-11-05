@@ -29,7 +29,7 @@ on_inspect_widget(GtkWidget *grab_window,
                   GdkEventButton *event,
                   ParasiteWindow *parasite)
 {
-    gdk_pointer_ungrab(event->time);
+    gdk_device_ungrab (gdk_event_get_device((GdkEvent *) event), event->time);
     gtk_widget_hide(parasite->highlight_window);
 
     if (parasite->selected_window != NULL)
@@ -109,8 +109,7 @@ on_highlight_widget(GtkWidget *grab_window,
 
     gtk_widget_hide(parasite->highlight_window);
 
-    selected_window = gdk_display_get_window_at_pointer(
-        gtk_widget_get_display(grab_window), NULL, NULL);
+    selected_window = gdk_device_get_window_at_position(gdk_event_get_device((GdkEvent *) event), NULL, NULL);
 
     if (selected_window == NULL)
     {
@@ -166,12 +165,14 @@ on_inspect_button_release(GtkWidget *button,
 
     cursor = gdk_cursor_new_for_display(gtk_widget_get_display(button),
                                         GDK_CROSSHAIR);
-    gdk_pointer_grab(gtk_widget_get_window(parasite->grab_window), FALSE,
-                     events,
-                     NULL,
-                     cursor,
-                     event->time);
-    gdk_cursor_unref(cursor);
+    gdk_device_grab(gdk_event_get_device((GdkEvent *) event),
+		    gtk_widget_get_window(parasite->grab_window),
+		    GDK_OWNERSHIP_NONE,
+		    FALSE,
+		    events,
+		    cursor,
+		    event->time);
+    g_object_unref(cursor);
 }
 
 
