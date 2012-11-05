@@ -263,7 +263,7 @@ parasite_actionlist_class_init(ParasiteActionListClass *klass)
 
 
 GType
-parasite_actionlist_get_type()
+parasite_actionlist_get_type(void)
 {
     static GType type = 0;
 
@@ -292,7 +292,7 @@ parasite_actionlist_get_type()
 
 
 GtkWidget *
-parasite_actionlist_new()
+parasite_actionlist_new(void)
 {
     return GTK_WIDGET(g_object_new(PARASITE_TYPE_ACTIONLIST, NULL));
 }

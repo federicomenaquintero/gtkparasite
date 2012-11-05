@@ -118,7 +118,7 @@ on_toggle_realize(GtkCellRendererToggle *toggle,
                   gtk_widget_unrealize);
 }
 
-
+#if 0
 static void
 on_toggle_visible(GtkCellRendererToggle *toggle,
                   char *path_str,
@@ -131,8 +131,9 @@ on_toggle_visible(GtkCellRendererToggle *toggle,
                   gtk_widget_show,
                   gtk_widget_hide);
 }
+#endif
 
-
+#if 0
 static void
 on_toggle_map(GtkCellRendererToggle *toggle,
               char *path_str,
@@ -145,7 +146,7 @@ on_toggle_map(GtkCellRendererToggle *toggle,
                   gtk_widget_map,
                   gtk_widget_unmap);
 }
-
+#endif
 
 static void
 parasite_widget_tree_init(ParasiteWidgetTree *widget_tree,
@@ -226,8 +227,10 @@ parasite_widget_tree_init(ParasiteWidgetTree *widget_tree,
                                                       "active", WIDGET_MAPPED,
                                                       NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(widget_tree), column);
-    //g_signal_connect(G_OBJECT(renderer), "toggled",
-    //                 G_CALLBACK(on_toggle_map), widget_tree);
+#if 0
+    g_signal_connect(G_OBJECT(renderer), "toggled",
+                     G_CALLBACK(on_toggle_map), widget_tree);
+#endif
 
     // Visible column
     renderer = gtk_cell_renderer_toggle_new();
@@ -240,8 +243,10 @@ parasite_widget_tree_init(ParasiteWidgetTree *widget_tree,
                                                       "active", WIDGET_VISIBLE,
                                                       NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(widget_tree), column);
-    //g_signal_connect(G_OBJECT(renderer), "toggled",
-    //                 G_CALLBACK(on_toggle_visible), widget_tree);
+#if 0
+    g_signal_connect(G_OBJECT(renderer), "toggled",
+                     G_CALLBACK(on_toggle_visible), widget_tree);
+#endif
 
     // X Window column
     renderer = gtk_cell_renderer_text_new();

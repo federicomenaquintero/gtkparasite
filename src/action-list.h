@@ -52,8 +52,8 @@ typedef struct _ParasiteActionListClass {
 G_BEGIN_DECLS
 
 
-GType parasite_actionlist_get_type();
-GtkWidget *parasite_actionlist_new();
+GType parasite_actionlist_get_type(void);
+GtkWidget *parasite_actionlist_new(void);
 gpointer parasite_actionlist_get_selected_object(ParasiteActionList *actionlist);
 
 

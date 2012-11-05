@@ -228,7 +228,7 @@ parasite_proplist_set_widget(ParasitePropList* proplist,
         gtk_list_store_append(proplist->priv->model, &iter);
         parasite_prop_list_update_prop(proplist, &iter, prop);
 
-        g_hash_table_insert(proplist->priv->prop_iters, prop->name,
+        g_hash_table_insert(proplist->priv->prop_iters, (char *) prop->name,
                             gtk_tree_iter_copy(&iter));
 
         /* Listen for updates */
